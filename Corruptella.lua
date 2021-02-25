@@ -225,13 +225,9 @@ function printInfo()
 	end
 end
 
---function test()
---end
-
 local lastPress = ""
 
 while true do
-
 	local input = input.get()
 	if (input.I == true) then
 		printInfo()
@@ -247,9 +243,6 @@ while true do
 	elseif (input.T == true and lastPress ~= "T") then
 		fuckVideo()
 		lastPress = "U"
-	--elseif (input.T == true and lastPress ~= "T") then
-	--	test()
-	--	lastPress = "T"
 	elseif (input.O == true and lastPress ~= "O") then
 		saveState(0)
 		lastPress = "O"
