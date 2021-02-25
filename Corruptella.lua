@@ -69,6 +69,10 @@ function fuckVideo()
 		fuckDomain(2, "CHR VROM")
 	elseif sys == "PSX" then
 		fuckDomain(1024, "GPURAM")
+	elseif sys == "GBA" then
+		fuckDomain(16, "VRAM")
+		fuckDomain(1, "OAM")
+		fuckDomain(1, "PALRAM")
 	end
 end
 
@@ -109,6 +113,11 @@ function fuckRAM()
 		fuckDomain(2, "RAM")
 	elseif sys == "PSX" then
 		fuckDomain(8, "MainRAM")
+	elseif sys == "GBA" then
+		fuckDomain(8, "EWRAM")
+		fuckDomain(2, "IWRAM")
+	elseif sys == "PCE" then
+		fuckDomain(8, "Main Memory")
 	end
 end
 
@@ -131,6 +140,10 @@ function fuckROM()
 		fuckDomain(16, "CARTROM")
 	elseif sys == "NES" then
 		fuckDomain(2, "PRG ROM")
+	elseif sys == "GBA" then
+		fuckDomain(16, "ROM")
+	elseif sys == "PCE" then
+		fuckDomain(8, "ROM")
 	end
 end
 
@@ -156,6 +169,10 @@ function saveState(slot)
 		backupDomain(romdump, "CARTROM")
 	elseif sys == "NES" then
 		backupDomain(romdump, "PRG ROM")
+	elseif sys == "GBA" then
+		backupDomain(romdump, "ROM")
+	elseif sys == "PCE" then
+		backupDomain(romdump, "ROM")
 	end
 
 	savestate.saveslot(slot, true)
@@ -184,6 +201,10 @@ function loadState(slot)
 		restoreDomain(romdump, "CARTROM")
 	elseif sys == "NES" then
 		restoreDomain(romdump, "PRG ROM")
+	elseif sys == "GBA" then
+		restoreDomain(romdump, "ROM")
+	elseif sys == "PCE" then
+		restoreDomain(romdump, "ROM")
 	end
 
 	savestate.loadslot(0, true)
