@@ -15,14 +15,9 @@ function backupDomain(filename, domain)
 	local file = io.open(filename, "w+b")
 
 	local keys = {}
-	for k in pairs(data) do
-		table.insert(keys, k)
-	end
 
-	table.sort(keys)
-
-	for _, k in ipairs(keys) do
-		file:write(string.char(data[k]))
+	for i = 0, domainSize - 1 do
+		file:write(string.char(data[i]))
 	end
 
 	io.close(file)
