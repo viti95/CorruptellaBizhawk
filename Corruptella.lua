@@ -73,6 +73,8 @@ function fuckVideo()
 		fuckDomain(16, "VRAM")
 		fuckDomain(1, "OAM")
 		fuckDomain(1, "PALRAM")
+	elseif sys == "INTV" then
+		fuckDomain(1, "Graphics RAM")
 	end
 end
 
@@ -118,6 +120,10 @@ function fuckRAM()
 		fuckDomain(2, "IWRAM")
 	elseif sys == "PCE" then
 		fuckDomain(8, "Main Memory")
+	elseif sys == "WSWAN" then
+		fuckDomain(4, "RAM")
+	elseif sys == "INTV" then
+		fuckDomain(1, "Main RAM")
 	end
 end
 
@@ -144,6 +150,10 @@ function fuckROM()
 		fuckDomain(16, "ROM")
 	elseif sys == "PCE" then
 		fuckDomain(8, "ROM")
+	elseif sys == "WSWAN" then
+		fuckDomain(16, "ROM")
+	elseif sys == "INTV" then
+		fuckDomain(2, "Executive Rom")
 	end
 end
 
@@ -173,6 +183,10 @@ function saveState(slot)
 		backupDomain(romdump, "ROM")
 	elseif sys == "PCE" then
 		backupDomain(romdump, "ROM")
+	elseif sys == "WSWAN" then
+		backupDomain(romdump, "ROM")
+	elseif sys == "INTV" then
+		backupDomain(romdump, "Executive Rom")
 	end
 
 	savestate.saveslot(slot, true)
@@ -205,6 +219,10 @@ function loadState(slot)
 		restoreDomain(romdump, "ROM")
 	elseif sys == "PCE" then
 		restoreDomain(romdump, "ROM")
+	elseif sys == "WSWAN" then
+		restoreDomain(romdump, "ROM")
+	elseif sys == "INTV" then
+		restoreDomain(romdump, "Executive Rom")
 	end
 
 	savestate.loadslot(0, true)
