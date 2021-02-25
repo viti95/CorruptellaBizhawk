@@ -43,6 +43,54 @@ function restoreDomain(filename, domain)
 	io.close(file)
 end
 
+function fuckVideo()
+	--gui.text(0, 0, "Video")
+
+	local sys = emu.getsystemid()
+
+	if sys == "GEN" then
+		fuckDomain(16, "CRAM")
+		fuckDomain(2, "VSRAM")
+		fuckDomain(16, "VRAM")
+	elseif sys == "SMS" then
+		fuckDomain(2, "Video RAM")
+	elseif sys == "GB" then
+		fuckDomain(16, "VRAM")
+		fuckDomain(2, "OAM")
+		fuckDomain(16, "HRAM")
+	elseif sys == "GBC" then
+		fuckDomain(16, "VRAM")
+		fuckDomain(2, "OAM")
+		fuckDomain(16, "HRAM")
+	elseif sys == "SNES" then
+		fuckDomain(16, "VRAM")
+		fuckDomain(2, "OAM")
+		fuckDomain(16, "CGRAM")
+	elseif sys == "A26" then
+		fuckDomain(1, "TIA")
+	elseif sys == "NES" then
+		fuckDomain(2, "CIRAM (nametables)")
+		fuckDomain(2, "OAM")
+		fuckDomain(2, "CHR VROM")
+	elseif sys == "PSX" then
+		fuckDomain(1024, "GPURAM")
+	end
+end
+
+function fuckSound()
+	--gui.text(0, 0, "Sound")
+
+	local sys = emu.getsystemid()
+
+	if sys == "GEN" then
+		fuckDomain(1, "Z80 RAM")
+	elseif sys == "SNES" then
+		fuckDomain(2, "APURAM")
+	elseif sys == "PSX" then
+		fuckDomain(128, "SPURAM")
+	end
+end
+
 function fuckRAM()
 	--gui.text(0, 0, "RAM")
 
@@ -51,7 +99,6 @@ function fuckRAM()
 	if sys == "N64" then
 		fuckDomain(64, "RDRAM")
 	elseif sys == "GEN" then
-		fuckDomain(1, "Z80 RAM")
 		fuckDomain(8, "68K RAM")
 	elseif sys == "SMS" then
 		fuckDomain(2, "Main RAM")
@@ -60,7 +107,7 @@ function fuckRAM()
 	elseif sys == "GBC" then
 		fuckDomain(16, "WRAM")
 	elseif sys == "SNES" then
-		fuckDomain(32, "WRAM")
+		fuckDomain(16, "WRAM")
 	elseif sys == "A26" then
 		fuckDomain(1, "Main RAM")
 	elseif sys == "NES" then
@@ -86,7 +133,7 @@ function fuckROM()
 	elseif sys == "GBC" then
 		fuckDomain(8, "ROM")
 	elseif sys == "SNES" then
-		fuckDomain(32, "CARTROM")
+		fuckDomain(16, "CARTROM")
 	elseif sys == "NES" then
 		fuckDomain(2, "PRG ROM")
 	end
@@ -177,6 +224,12 @@ while true do
 		lastPress = "Y"
 	elseif (input.U == true and lastPress ~= "U") then
 		fuckRAM()
+		lastPress = "U"
+	elseif (input.R == true and lastPress ~= "R") then
+		fuckSound()
+		lastPress = "Y"
+	elseif (input.T == true and lastPress ~= "T") then
+		fuckVideo()
 		lastPress = "U"
 	--elseif (input.T == true and lastPress ~= "T") then
 	--	test()
